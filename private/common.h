@@ -65,10 +65,28 @@ static inline void random_shuffle_array(uint16_t *operations, uint16_t len)
     }
 }
 
-static inline void sequence_array(uint16_t *operations, uint16_t len)
+static inline void ascending_array(uint16_t *operations, uint16_t len)
 {
     for (int i = 0; i < len; i++) {
         operations[i] = i;
+    }
+}
+
+static inline void decending_array(uint16_t *operations, uint16_t len)
+{
+    for (int i = 0; i < len; i++) {
+        operations[i] = len - 1 - i;
+    }
+}
+
+static inline void odd_even_seperate_array(uint16_t *operations, uint16_t len)
+{
+    for (int odd = 1; odd < len; odd += 2) {
+        operations[odd / 2] = odd;
+    }
+
+    for (int even = 0; even < len; even += 2) {
+        operations[len / 2 + even / 2] = even;
     }
 }
 
