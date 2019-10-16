@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 #elif DEC
     decending_array(values, ARRAY_SIZE(values));
 #elif SEPERATE
-    odd_even_seperate_array(values, ARRAY_SIZE(values));
+    seperated_array(values, ARRAY_SIZE(values));
 #endif
 
     INIT_LIST_HEAD(&insert_list);

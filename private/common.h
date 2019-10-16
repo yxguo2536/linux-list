@@ -79,15 +79,33 @@ static inline void decending_array(uint16_t *operations, uint16_t len)
     }
 }
 
-static inline void odd_even_seperate_array(uint16_t *operations, uint16_t len)
+
+static void worst_for_merge_array(uint16_t *operations, uint16_t len)
 {
-    for (int odd = 1; odd < len; odd += 2) {
-        operations[odd / 2] = odd;
+    uint16_t tmp[len];
+
+    if (len <= 2)
+        return;
+
+    for (int i = 0; i < len; i++) {
+        tmp[i] = operations[i];
     }
 
     for (int even = 0; even < len; even += 2) {
-        operations[len / 2 + even / 2] = even;
+        operations[even / 2] = tmp[even];
     }
+    for (int odd = 1; odd < len; odd += 2) {
+        operations[len - len / 2 + odd / 2] = tmp[odd];
+    }
+
+    worst_for_merge_array(operations, len - len / 2);
+    worst_for_merge_array(operations + len - len / 2, len / 2);
+}
+
+static inline void seperated_array(uint16_t *operations, uint16_t len)
+{
+    ascending_array(operations, len);
+    worst_for_merge_array(operations, len);
 }
 
 #endif /* PRIVATE_COMMON_H */
